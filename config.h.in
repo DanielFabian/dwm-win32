@@ -66,16 +66,12 @@ static const int nmaster = 2; /* default number of clients in the master area */
 
 static Layout layouts[] = {
     /* symbol     arrange function */
-    { L"[]=",      tile },    /* first entry is default */
+    { L"-|=",      ntile }, /* first entry is default */
+    { L"-|-",      nbstack },
     { L"><>",      NULL },    /* no layout function means floating behavior */
     { L"[M]",      monocle },
-    { L"TTT",      bstack },
     { L"###",      gaplessgrid },
     { L"+++",      grid },
-    { L"(@)",      spiral },
-    { L"[\\]",     dwindle },
-    { L"-|=",      ntile },
-    { L"-|-",      nbstack },
 };
 
 /* key definitions */
@@ -111,15 +107,11 @@ static Key keys[] = {
     { MODKEY,                       VK_TAB,    view,                {0} },
     { MODKEY|MOD_SHIFT,             'C',       killclient,          {0} },
     { MODKEY,                       'T',       setlayout,           {.v = &layouts[0]} },
-    { MODKEY,                       'F',       setlayout,           {.v = &layouts[1]} },
-    { MODKEY,                       'M',       setlayout,           {.v = &layouts[2]} },
-    { MODKEY,                       'B',       setlayout,           {.v = &layouts[3]} },
+    { MODKEY,                       'B',       setlayout,           {.v = &layouts[1]} },
+    { MODKEY,                       'F',       setlayout,           {.v = &layouts[2]} },
+    { MODKEY,                       'M',       setlayout,           {.v = &layouts[3]} },
     { MODKEY,                       'G',       setlayout,           {.v = &layouts[4]} },
     { MODKEY|MOD_SHIFT,             'G',       setlayout,           {.v = &layouts[5]} },
-    { MODKEY,                       'D',       setlayout,           {.v = &layouts[6]} },
-    { MODKEY|MOD_SHIFT,             'D',       setlayout,           {.v = &layouts[7]} },
-    { MODKEY,                       'O',       setlayout,           {.v = &layouts[8]} },
-    { MODKEY|MOD_SHIFT,             'O',       setlayout,           {.v = &layouts[9]} },
     { MODKEY,                       'A',       incnmaster,          {.i = +1 } },
     { MODKEY,                       'Z',       incnmaster,          {.i = -1 } },
     { MODKEY,                       'X',       setnmaster,          {.i = 2 } },

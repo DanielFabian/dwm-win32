@@ -25,9 +25,9 @@ incnmaster(const Arg *arg) {
 
 static void
 setnmaster(const Arg *arg) {
-	if(!arg) // || !selmon->lt[selmon->sellt]->arrange || selmon->num >= MaxMon)
+	if(!arg)
 		return;
-	nmasters[0 /*selmon->num*/] = arg->i > 0 ? arg->i : 0;
+	nmasters[0] = arg->i > 0 ? arg->i : 0;
 	arrange();
 }
 
