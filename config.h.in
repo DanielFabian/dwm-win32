@@ -7,7 +7,7 @@
 #define PROJECT_VER_MINOR "@PROJECT_VERSION_MINOR@"
 #define PTOJECT_VER_PATCH "@PROJECT_VERSION_PATCH@"
 
-static const wchar_t *fontname         = L"Fira Code";
+static const wchar_t *fontname         = L"CaskaydiaCove Nerd Font";
 static const unsigned int fontsize  = 20;
 
 /* appearance, colors are specified in the form 0x00bbggrr or with the RGB(r, g, b) macro */
@@ -56,11 +56,13 @@ static Rule rules[] = {
 
 /* layout(s) */
 static float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster = 2; /* default number of clients in the master area */
 
 #include "bstack.c"
 #include "grid.c"
 #include "gaplessgrid.c"
 #include "fibonacci.c"
+#include "nmaster-ncol.c"
 
 static Layout layouts[] = {
     /* symbol     arrange function */
@@ -72,6 +74,8 @@ static Layout layouts[] = {
     { L"+++",      grid },
     { L"(@)",      spiral },
     { L"[\\]",     dwindle },
+    { L"-|=",      ntile },
+    { L"-|-",      nbstack },
 };
 
 /* key definitions */
@@ -114,6 +118,11 @@ static Key keys[] = {
     { MODKEY|MOD_SHIFT,             'G',       setlayout,           {.v = &layouts[5]} },
     { MODKEY,                       'D',       setlayout,           {.v = &layouts[6]} },
     { MODKEY|MOD_SHIFT,             'D',       setlayout,           {.v = &layouts[7]} },
+    { MODKEY,                       'O',       setlayout,           {.v = &layouts[8]} },
+    { MODKEY|MOD_SHIFT,             'O',       setlayout,           {.v = &layouts[9]} },
+    { MODKEY,                       'A',       incnmaster,          {.i = +1 } },
+    { MODKEY,                       'Z',       incnmaster,          {.i = -1 } },
+    { MODKEY,                       'X',       setnmaster,          {.i = 2 } },
     { MODKEY|MOD_CONTROL,           VK_SPACE,  setlayout,           {0} },
     { MODKEY|MOD_SHIFT,             VK_SPACE,  togglefloating,      {0} },
     { MODKEY,                       'N',       toggleborder,        {0} },
