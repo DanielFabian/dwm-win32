@@ -15,12 +15,12 @@ initnmaster(void) {
 
 static void
 incnmaster(const Arg *arg) {
-	if(!arg) // || !selmon->lt[selmon->sellt]->arrange || selmon->num >= MaxMon)
+	if(!arg)
 		return;
-	nmasters[0 /*selmon->num*/] += arg->i;
-	if(nmasters[0 /*selmon->num*/] < 0)
-		nmasters[0 /*selmon->num*/] = 0;
-	arrange(NULL);
+	nmasters[0] += arg->i;
+	if(nmasters[0] < 0)
+		nmasters[0] = 0;
+	arrange();
 }
 
 static void
@@ -28,7 +28,7 @@ setnmaster(const Arg *arg) {
 	if(!arg) // || !selmon->lt[selmon->sellt]->arrange || selmon->num >= MaxMon)
 		return;
 	nmasters[0 /*selmon->num*/] = arg->i > 0 ? arg->i : 0;
-	arrange(NULL);
+	arrange();
 }
 
 static void
